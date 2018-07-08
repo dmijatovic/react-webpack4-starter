@@ -53,7 +53,7 @@ export class Clock extends React.Component{
     if (num < 10){
       strNum = `0${num}`;
     }else{
-      strNum = num;
+      strNum = num.toString();
     }
     return strNum;
   }

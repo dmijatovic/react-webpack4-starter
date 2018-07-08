@@ -23,6 +23,8 @@ Just run `npm install` and all libs mentioned below will be installed.
   npm i postcss-loader autoprefixer -D
   # 6. install other webpack util plugins
   npm i html-webpack-plugin copy-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin -D
+  # 7. install testing suite Jest & Enzyme
+  npm i -D jest babel-jest babel-preset-env enzyme enzyme-adapter-react-16
 
 ```
 
@@ -32,6 +34,7 @@ Just run `npm install` and all libs mentioned below will be installed.
 - `npm run dev:` start webpack-dev-server using dev environment (--env=dev)
 - `npm run build-dev:` Build development version.
 - `npm run build-prod:` Build production version to dist folder. Note that previous build will be removed first.
+- `npm test`: to run tests with Jest & Enzyme
 
 ## Webpack config scripts
 
@@ -56,3 +59,5 @@ Master will have same content as base setup.
 - dev: development branch
 
 
+## Testing
+For testing this project uses Jest and Enzyme. Basic Jest definitions are taken from create-react-app scripts. The mockup scripts are in jest folder and the jest configuration is in package.json.
