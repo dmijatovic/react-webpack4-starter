@@ -27,6 +27,15 @@ html{
   */
   //estimated 16px=1rem;
   font-size: 100%;
+
+  @media screen and (max-width:$width-sm){
+    font-size: 75%;
+  }
+
+  @media screen and (max-width:$width-xs){
+    font-size: 50%;
+  }
+
 }
 
 body{
@@ -34,16 +43,37 @@ body{
   min-height: 100vh;
   font-family: $font-family;
   color: var(--color-dark-1);
-  background-image: linear-gradient(to bottom right, 
+  /*background-image: linear-gradient(to bottom right, 
     var(--color-primary-light), var(--color-primary-dark)
-  );  
+  );*/  
   box-sizing: border-box;  
 }
 
 
-.react-app{
-  flex:1;
-  display: flex;
-  flex-direction: column;
-  //width: 100%;
+.app{
+  &-main{
+    flex:1;
+    display: flex;
+    flex-direction: column;  
+  }
+
+  &-body{
+    //expand
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  &-page-title{
+    padding: 0rem 1rem;
+  }
+
+  &-loader{
+    position: absolute;
+    left: 0; right:0;
+    top: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

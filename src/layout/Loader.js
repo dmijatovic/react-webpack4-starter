@@ -38,7 +38,7 @@ export class Loader extends React.Component{
   }
   render(){
     return (
-      <div className="loader">
+      <div className="app-loader">
       { //add loader content here
         this.loaderHtml()
       }

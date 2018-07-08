@@ -1,14 +1,14 @@
 # React webpack 4 (simple) starter template
 
-This is simple webpack 4 starter with scss enabled. At the moment of creating this starter create-react-app cli uses webpack v3. I created starter tailored toward my needs.
+This is simple webpack 4 starter with scss enabled. At the moment of creating this starter create-react-app cli used webpack v3. I created this starter testing webpack 4 approach and some personal preferences.
 
-I will probably use create-react-app cli when it starts using webpack v4. For now this is simple starter just to learn webpack 4 and integration of react.js in it.
+I will probably use create-react-app cli when it is upgraded to use webpack v4. For now this simple starter is used to learn webpack 4 and the integration of react.js with webpack v4.
 
-I started completely from scratch taking all latest versions avaliable at the time (2018-07-07).
+I started completely from scratch taking the latest versions avaliable at the time (2018-07-07).
 
 ## NPM installation scripts
 
-Just run `npm install` and all libs mentioned here below should be installed.
+Just run `npm install` and all libs mentioned below will be installed.
 
 ```bash
   # 1. install webpack
@@ -53,5 +53,6 @@ Master will have same content as base setup.
 - router: setup extended with react-router
 - redux: setup extended with redux
 - material: setup extended with react-material lib
+- dev: development branch
 
 
