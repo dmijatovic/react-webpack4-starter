@@ -53,6 +53,7 @@ Master will have same content as base setup.
 
 - master: same as base. 
 - base: basic rect-dom setup with support for scss, postcss, fonts and images.
+- jest: basic + jest and enzyme test suite setup
 - router: setup extended with react-router
 - redux: setup extended with redux
 - material: setup extended with react-material lib
