@@ -1,11 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
+import {Provider} from 'react-redux';
+import {createStore, combineReducers} from 'redux';
+//import reducer from './store/reducers';
+import { loaderReducer, headerReducer } from './store/reducers';
 
+
+import App from './App';
 import './styles/index.scss';
 
+const myStore = createStore(
+  combineReducers({
+    header: headerReducer,
+    loader: loaderReducer, 
+  })
+);
+
 ReactDOM.render(
-  <App/>,
+  <Provider store={myStore}>
+    <App/>
+  </Provider>,
   document.getElementById('react-root')
 )

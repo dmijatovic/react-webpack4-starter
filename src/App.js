@@ -2,47 +2,36 @@
 import React from 'react';
 
 //THIRD PARTY
+import { connect } from 'react-redux';
 
-//LOCAL components
+//LOCAL
 import { Header, Footer, Loader, PageTitle } from './layout';
 //import Header from './layout/Header';
 //import Footer from './layout/Footer';
+//import { Config } from './store/app.cfg';
 
-import { Config } from './App.cfg';
-
-export default class App extends React.Component{
+export class App extends React.Component{
+  /* this happens by default
   constructor(props){
     super(props);
-    this.initState();
-  }
-  initState(){
-    //debugger
-    this.state={
-      //load basic configuration
-      cfg: Config,
-      loader:{
-        //there are 2 types: first, second
-        type:'first',
-        show: true 
-      }
-    }
-  }
+  }*/
   componentDidMount(){
+    //debugger 
     //this.showLoader();
     //change loader state after 5 seconds
     setTimeout(()=>{
-      this.setState({
-        loader:{
-          show: false 
-        }
-      })
+      //dispatch action to redux store 
+      //to hide loader
+      this.props.onHideLoader();
+      //set page title
+      this.props.setPageTitle("This is page title from redux");
     },5000);
   }
   showLoader(){
     //debugger
-    if (this.state.loader.show){
+    if (this.props.loader.show){
       return (
-        <Loader type={this.state.loader.type}/>
+        <Loader type={this.props.loader.type}/>
       )
     } else{
       return null;
@@ -52,11 +41,11 @@ export default class App extends React.Component{
     return(
       <React.Fragment>
         <Header
-          logo={this.state.cfg.header.logo} 
-          appTitle={this.state.cfg.header.appTitle}
+          logo={this.props.logo} 
+          appTitle={this.props.appTitle}
         />,
         <section className="app-body">
-          <PageTitle title="This is current page title"/>
+          <PageTitle title={this.props.pageTitle}/>
           {this.showLoader()}
         </section>,
         <Footer/>
@@ -64,3 +53,41 @@ export default class App extends React.Component{
     );
   }
 }
+/**
+ * Map redux store states to local component properties
+ * @param state: object, redux store object 
+ */
+const mapStateToProps = state => {
+  //debugger 
+  return {
+    logo: state.header.logo,
+    appTitle: state.header.appTitle,
+    pageTitle: state.header.pageTitle,
+    loader: state.loader 
+  }
+}
+/**
+ * Map redux dispatch actions to local component props
+ * @param dispatch: function, redux dispatch function 
+ */
+const mapDispatchToProps = dispatch =>{
+  return {
+    //note short ES6 fn notation (single line assumes return)
+    onShowLoader: () => dispatch({type:"SHOW_LOADER"}),
+    onHideLoader: () => dispatch({type:"HIDE_LOADER"}),
+    setLoaderType: () => dispatch({type:"SET_LOADER_TYPE"}),
+    setPageTitle: (pageTitle) => {
+      return dispatch({type:"SET_PAGE_TITLE",payload: pageTitle});
+    }
+  }  
+}
+
+/**
+ * Export app class connected with Redux store
+ * and props and discpatch actions mapped into 
+ * a local App component 
+ */
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(App);

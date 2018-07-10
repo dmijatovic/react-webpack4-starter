@@ -16,7 +16,7 @@ Just run `npm install` and all libs mentioned below will be installed.
   # 2. install react dom
   npm i react react-dom --save
   # 3. install babel loaders
-  npm i babel-cli babel-loader babel-preset-react -D
+  npm i babel-cli babel-loader babel-preset-react babel-preset-stage-3 -D
   # 4. install scss/css loaders 
   npm i node-sass sass-loader css-loader mini-css-extract-plugin -D
   # 5. install post css loader, autoprefixer 
@@ -25,6 +25,8 @@ Just run `npm install` and all libs mentioned below will be installed.
   npm i html-webpack-plugin copy-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin -D
   # 7. install testing suite Jest & Enzyme
   npm i -D jest babel-jest babel-preset-env enzyme enzyme-adapter-react-16
+  # 8. install redux
+  npm i -S redux react-redux
 
 ```
 

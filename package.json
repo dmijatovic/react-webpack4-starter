@@ -9,7 +9,7 @@
     "build-dev": "webpack --env=dev",
     "build-prod": "webpack --env=prod",
     "test": "jest --watch",
-    "test-debug":"node --inspect-brk node_modules/.bin/jest --runInBand"
+    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
@@ -39,7 +40,9 @@
   },
   "dependencies": {
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
   },
   "jest": {
     "collectCoverageFrom": [
