@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 //LOCAL
 import { Header, Footer, Loader, PageTitle } from './layout';
+import * as actionType from './store/actions';
 //import Header from './layout/Header';
 //import Footer from './layout/Footer';
 //import { Config } from './store/app.cfg';
@@ -73,9 +74,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>{
   return {
     //note short ES6 fn notation (single line assumes return)
-    onShowLoader: () => dispatch({type:"SHOW_LOADER"}),
-    onHideLoader: () => dispatch({type:"HIDE_LOADER"}),
-    setLoaderType: () => dispatch({type:"SET_LOADER_TYPE"}),
+    onShowLoader: () => dispatch({type:actionType.SHOW_LOADER}),
+    onHideLoader: () => dispatch({type:actionType.HIDE_LOADER}),
+    setLoaderType: (loaderType) => dispatch({type:actionType.setLoaderType, payload: loaderType}),
     setPageTitle: (pageTitle) => {
       return dispatch({type:"SET_PAGE_TITLE",payload: pageTitle});
     }

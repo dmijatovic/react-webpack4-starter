@@ -1,5 +1,8 @@
 
-
+/**
+ * Inital app configuration
+ * note! the values are imported inyo redux store
+ */
 export const Config = {
   header:{
     logo:{
@@ -7,5 +10,19 @@ export const Config = {
     },
     appTitle:'This is app title received from Redux',
     pageTitle: "Wait for page to load..."
+  },
+  //clock inital values
+  clock: {
+    time:{
+      hrs: "00",
+      min: "00",
+    },
+    update: 1000,
+    semicolon: true 
+  },
+  //app-loader
+  loader:{
+    type:'second',
+    show: true
   }
 }

@@ -1,40 +1,32 @@
 
 import { Config } from './app.cfg';
+import * as actionType from './actions';
 
-const initialState={
-  //basic header config
-  header: Config.header,
-  //clock inital values
-  clock: {
-    time:{
-      hrs: "00",
-      min: "00",
-    },
-    update: 1000,
-    semicolon: true 
-  },
-  //app-loader
-  loader:{
-    type:'second',
-    show: true
-  }
-}
-
-
+const initialState=Config;
+/**
+ * Manage the loader states using redux store
+ * @param {*} state: object, current redux store state of loader store 
+ * @param {type,payload:{*}} action: object, dispatched redux action 
+ */
 export const loaderReducer = (state=initialState.loader,action)=>{
   //log action comming into reducer
   logAction("loaderReducer",state,action);
   //just for fun use lowercased action types
-  switch (action.type.toLowerCase()){
-    case "show_loader":
+  switch (action.type){
+    case actionType.SHOW_LOADER:
       return {
         ...state,
         show: true 
       }
-    case "hide_loader":
+    case actionType.HIDE_LOADER:
       return {
         ...state,
         show: false
+      }
+    case actionType.SET_LOADER_TYPE:
+      return {
+        ...state,
+        type: action.payload 
       }
     //always return state 
     //to continue 'event' chain
@@ -47,18 +39,18 @@ export const headerReducer = (state = initialState.header, action) => {
   //log action comming into reducer
   logAction("headerReducer",state,action);
   //just for fun use lowercased action types
-  switch (action.type.toLowerCase()){
-    case "set_page_title":
+  switch (action.type){
+    case actionType.SET_PAGE_TITLE:
       return {
         ...state,
         pageTitle: action.payload 
       }
-    case "set_app_title":
+    case actionType.SET_APP_TITLE:
       return {
         ...state,
         appTitle: action.payload 
       }
-    case "set_app_logo":
+    case actionType.SET_APP_LOGO:
       return {
         ...state,
         logo: action.payload 
@@ -70,12 +62,12 @@ export const headerReducer = (state = initialState.header, action) => {
   } 
 }
 
-
-const reducer = (state = initialState, action) =>{
-  logAction("reducer", state, action);
-  return state;
-}
-
+/**
+ * Log action entering reducer
+ * @param {*} reducer:string, reducer function 
+ * @param {*} state:object, redux store current state 
+ * @param {*} action:object, dispatched redux action 
+ */
 function logAction(reducer, state, action){
   console.group(`Reducer...${reducer}`);
   console.log("state...", state);
@@ -83,4 +75,4 @@ function logAction(reducer, state, action){
   console.groupEnd();
 }
 
-export default reducer;
+//export default reducer;
