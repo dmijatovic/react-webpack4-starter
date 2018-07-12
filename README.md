@@ -16,7 +16,7 @@ Just run `npm install` and all libs mentioned below will be installed.
   # 2. install react dom
   npm i react react-dom --save
   # 3. install babel loaders
-  npm i babel-cli babel-loader babel-preset-react babel-preset-stage-3 -D
+  npm i babel-cli babel-loader babel-preset-react babel-preset-stage-2 -D
   # 4. install scss/css loaders 
   npm i node-sass sass-loader css-loader mini-css-extract-plugin -D
   # 5. install post css loader, autoprefixer 

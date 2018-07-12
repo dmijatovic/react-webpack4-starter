@@ -9,3 +9,7 @@ export const SET_PAGE_TITLE = "SET_PAGE_TITLE";
 export const SET_APP_TITLE = "SET_APP_TITLE";
 export const SET_APP_LOGO = "SET_APP_LOGO";
 
+//person actions
+export const ADD_PERSON = "ADD_PERSON";
+export const DELETE_PERSON = "DELETE_PERSON";
+

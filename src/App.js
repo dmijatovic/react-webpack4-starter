@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 //LOCAL
 import { Header, Footer, Loader, PageTitle } from './layout';
+import Persons from './persons/Persons';
 import * as actionType from './store/actions';
 //import Header from './layout/Header';
 //import Footer from './layout/Footer';
@@ -26,7 +27,7 @@ export class App extends React.Component{
       this.props.onHideLoader();
       //set page title
       this.props.setPageTitle("This is page title from redux");
-    },5000);
+    },2000);
   }
   showLoader(){
     //debugger
@@ -35,7 +36,11 @@ export class App extends React.Component{
         <Loader type={this.props.loader.type}/>
       )
     } else{
-      return null;
+      return(
+        <section className="app-page-content">
+          <Persons/>
+        </section>
+      );
     }
   }
   render(){

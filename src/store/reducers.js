@@ -5,8 +5,8 @@ import * as actionType from './actions';
 const initialState=Config;
 /**
  * Manage the loader states using redux store
- * @param {*} state: object, current redux store state of loader store 
- * @param {type,payload:{*}} action: object, dispatched redux action 
+ * @param state: object, current redux store state of loader store 
+ * @param action: object, dispatched redux action 
  */
 export const loaderReducer = (state=initialState.loader,action)=>{
   //log action comming into reducer
@@ -38,7 +38,8 @@ export const loaderReducer = (state=initialState.loader,action)=>{
 export const headerReducer = (state = initialState.header, action) => {
   //log action comming into reducer
   logAction("headerReducer",state,action);
-  //just for fun use lowercased action types
+  
+  //define state actions
   switch (action.type){
     case actionType.SET_PAGE_TITLE:
       return {
@@ -61,6 +62,31 @@ export const headerReducer = (state = initialState.header, action) => {
       return state;
   } 
 }
+
+export const personsReducer = (state=[],action)=>{
+  //log action comming into reducer
+  logAction("personsReducer",state,action);
+  
+  switch (action.type){
+    case actionType.ADD_PERSON:
+      //use concat with arrays
+      //to return new object (immutable)
+      return state.concat({
+        ...action.payload,
+        id: Math.random()*1000000
+      });
+
+    case actionType.DELETE_PERSON:
+      //use filter to return new object (immutable)
+      return state.filter(item=> item.id!=action.payload)
+    //always return state 
+    //to continue 'event' chain
+    default:
+      return state;
+  }
+}
+
+
 
 /**
  * Log action entering reducer
