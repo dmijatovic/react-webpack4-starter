@@ -14,6 +14,7 @@ export default class Home extends React.Component{
         title="This is homepage title in the header">
 
         <h2>Home page title</h2>
+
         <Loader type="">
         </Loader>
 

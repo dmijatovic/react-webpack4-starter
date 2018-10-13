@@ -1,7 +1,7 @@
 {
-  "name": "react-webpack4-starter",
+  "name": "react-w4-b7-starter",
   "version": "2.0.0",
-  "description": "",
+  "description": "React webpack 4 babel 7 starter",
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack --watch --env=dev",
@@ -9,9 +9,9 @@
     "build:dev": "webpack --env=dev",
     "build": "webpack --env=prod"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["react","webpack 4", "babel 7", "scss"],
+  "author": "Dusan Mijatovic, dv4all",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",

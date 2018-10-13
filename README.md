@@ -1,10 +1,8 @@
 # React webpack 4 (simple) starter template
 
-This is simple webpack 4 starter with scss enabled and babel version 7. Note that this simple started get more complex on each version increase :-).
+This is simple webpack 4 starter with scss enabled and babel version 7. Note that this simple starter gets more complex on each version increase :-).
 
-I started completely from scratch taking all latest versions avaliable at the time (2018-07-07).
-
-On 2018-10-13 version 2 is created which upgrades to Babel version 7 and furher extends the possibilities of this starter template.
+I started completely from scratch taking all latest versions avaliable at the time (2018-07-07). On 2018-10-13 the version 2 is created which upgrades to Babel version 7 and further extends the possibilities of this starter.
 
 ## NPM installation scripts
 
@@ -90,4 +88,11 @@ To provide support for various browsers javasript as well as CSS need to be tran
     "> 1%",
     "not IE 10"
   ]
+```
+
+To validate things work properly run
+
+```bash
+   # check browser list for post-css autoprefixer
+   npx browserslist
 ```

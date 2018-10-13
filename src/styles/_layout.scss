@@ -64,6 +64,9 @@ body{
   html{
     font-size: 75%;
   }
+  :root{
+    --body-content-width: 93vw;
+  }
 }
 
 /*--width-sm 62.5% => 1rem = 10px */
@@ -71,12 +74,18 @@ body{
   html{
     font-size: 62.5%;
   }
+  :root{
+    --body-content-width: 95vw;
+  }
 }
 
 /*--width-xs 50% => 1rem = 8px */
 @media screen and (max-width:480px){
   html{
     font-size: 50%;
+  }
+  :root{
+    --body-content-width: 100vw;
   }
 }
 
