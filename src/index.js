@@ -1,29 +1,21 @@
+//polyfills
+import '@babel/polyfill';
+//REACT
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//REDUX
 import {Provider} from 'react-redux';
-import {createStore, combineReducers} from 'redux';
-//import reducer from './store/reducers';
-import { 
-  loaderReducer, headerReducer,
-  personsReducer 
-} from './store/reducers';
+import appStore from './store';
 
-
-import App from './App';
+//LOCAL - STYLES
 import './styles/index.scss';
-
-const myStore = createStore(
-  combineReducers({
-    header: headerReducer,
-    loader: loaderReducer,
-    persons: personsReducer 
-  })
-);
+//start page
+import Home from './page/Home';
 
 ReactDOM.render(
-  <Provider store={myStore}>
-    <App/>
+  <Provider store={appStore}>
+    <Home/>
   </Provider>,
   document.getElementById('react-root')
 )

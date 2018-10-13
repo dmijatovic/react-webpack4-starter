@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 /*
  * We've enabled UglifyJSPlugin for you! This minifies your app
  * in order to load faster and run less javascript.
@@ -13,30 +14,19 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 //const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-/*
- * SplitChunksPlugin is enabled by default and replaced
- * deprecated CommonsChunkPlugin. It automatically identifies modules which
- * should be splitted of chunk by heuristics using module duplication count and
- * module category (i. e. node_modules). And splits the chunks…
- *
- * It is safe to remove "splitChunks" from the generated configuration
- * and was added as an educational example.
- *
- * https://webpack.js.org/plugins/split-chunks-plugin/
- *
- */
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const dist = path.resolve(__dirname, '../dist');
 
 module.exports = {
 	mode: 'production',
-	entry:{		
+	entry:{
 		index: './src/index.js'
 	},
 	output: {
 		filename: '[name].[chunkhash].js',
 		chunkFilename: '[name].[chunkhash].js',
-		path: path.resolve(__dirname, '../dist')
+		path: dist
 	},
 
 	module: {
@@ -51,20 +41,28 @@ module.exports = {
 				MiniCssExtractPlugin.loader,
 				{
 					loader: 'css-loader',
-					options:{
-						minimize: true
-					}
 				},{
 					loader: 'postcss-loader'
 				},{
 					loader: 'sass-loader'
 			}]
+		},{
+			test: /\.(png|jpg|gif|svg)$/i,
+			use: [
+				{
+					loader: 'url-loader',
+					options: {
+						limit: 2048,
+						name:"img/[name].[ext]"
+					}
+				}
+			]
 		}]
 	},
 
-	plugins: [		
+	plugins: [
 		//remove all files from dist folder on each build
-		new CleanWebpackPlugin(['../dist/*.*']),		
+		new CleanWebpackPlugin(['./dist/*.*']),
 		//copy index html
 		//https://webpack.js.org/plugins/html-webpack-plugin/
 		new HtmlWebpackPlugin({
@@ -80,26 +78,19 @@ module.exports = {
 		}),
 		//copy assets
 		//https://webpack.js.org/plugins/copy-webpack-plugin/
-		new CopyWebpackPlugin([						
+		new CopyWebpackPlugin([
 			//copy all files from assets dir to root
 			'./assets/'
 		]),
 		//uglify js
-		new UglifyJSPlugin()
-	],
-
-	optimization: {
-		splitChunks: {
-			chunks: 'async',
-			minSize: 30000,
-			minChunks: 1,
-			name: true,
-			cacheGroups: {
-				vendors: {
-					test: /[\\/]node_modules[\\/]/,
-					priority: -10
-				}
-			}
-		}
-	}
+		new UglifyJSPlugin(),
+		//optimize css
+		new OptimizeCSSAssetsPlugin(),
+		/* further investigation needed
+			https://www.npmjs.com/package/webpack-bundle-analyzer
+		*/
+		new BundleAnalyzerPlugin({
+			generateStatsFile: true
+		})
+	]
 };

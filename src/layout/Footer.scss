@@ -1,12 +1,23 @@
+/*
+  Footer.scss
+  v.0.0.1
+*/
 
 .app{
-
   &-footer{
-    padding: 1rem;
-    min-height: 5rem;
-    color: var(--color-light-1);
-    background-image: linear-gradient(to right,
-    var(--color-dark-1), var(--color-dark-3)
-    );
+    display:flex;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+  }
+}
+
+.footer{
+  &-left{
+    display:flex;
+    font-size: 1rem;
+  }
+  &-right{
+    display:flex;
+    font-size: 0.7rem;
   }
 }

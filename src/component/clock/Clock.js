@@ -14,7 +14,7 @@ export class Clock extends React.Component{
         min: "00",
       },
       update: 1000,
-      semicolon: true, 
+      semicolon: true,
     }
   }
   componentDidMount(){
@@ -30,10 +30,10 @@ export class Clock extends React.Component{
   tick(){
     //console.log("Update time...");
     //debugger
-    let time = new Date(),  
+    let time = new Date(),
       hrs = time.getHours(),
       min = time.getMinutes();
-    
+
     this.setState({
       time: {
         hrs: this.formatShortNumToStr(hrs),
@@ -45,8 +45,8 @@ export class Clock extends React.Component{
   }
   /**
    * Format time number to a string value having always width of 2,
-   * 
-   * @param {*} num 
+   *
+   * @param {*} num
    */
   formatShortNumToStr(num){
     let strNum="00";
@@ -72,8 +72,8 @@ export class Clock extends React.Component{
         <div className="app-clock-hours">
           { this.state.time.hrs }
         </div>
-        { //show/hide semicolon on each interval 
-          this.showSemicolon() 
+        { //show/hide semicolon on each interval
+          this.showSemicolon()
         }
         <div className="app-clock-minutes">
           { this.state.time.min }
@@ -82,3 +82,5 @@ export class Clock extends React.Component{
     )
   }
 }
+
+export default Clock;

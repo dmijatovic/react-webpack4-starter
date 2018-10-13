@@ -2,5 +2,9 @@
 // import Lato fonts
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
-
-// import font
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}

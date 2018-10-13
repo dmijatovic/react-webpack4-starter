@@ -18,11 +18,11 @@ export const Config = {
       min: "00",
     },
     update: 1000,
-    semicolon: true 
+    semicolon: true
   },
   //app-loader
   loader:{
-    type:'second',
+    type:'roller',
     show: true
   }
 }

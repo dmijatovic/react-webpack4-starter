@@ -5,7 +5,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 //LOCAL
-import * as actionType from '../store/actions';
+import * as actionType from '../../store/actions';
 import './Persons.scss';
 import AddPerson from './AddPerson';
 import PersonCard from'./PersonCard';
@@ -17,13 +17,13 @@ export class Persons extends React.Component{
         <AddPerson addPerson={this.props.onAddPerson}/>
         <div className="persons-list">
           {
-            //list persons here 
+            //list persons here
             this.props.persons.map((p)=>{
               //debugger
               return (
-                <PersonCard 
+                <PersonCard
                 {...p}
-                deletePerson={this.props.onDeletePerson} 
+                deletePerson={this.props.onDeletePerson}
                 key={p.id}/>
               )
             })
@@ -37,18 +37,18 @@ export class Persons extends React.Component{
 const mapStateToProps = state =>{
   //debugger
   return {
-    persons: state.persons 
+    persons: state.persons
   }
 }
 
 const mapDispatchToProps = dispatch =>{
   return {
     onAddPerson: (person) => {
-      //debugger 
+      //debugger
       return dispatch({type: actionType.ADD_PERSON, payload: person})
     },
     onDeletePerson: (id) => {
-      //debugger 
+      //debugger
       return dispatch({type: actionType.DELETE_PERSON, payload: id})
     }
   }
