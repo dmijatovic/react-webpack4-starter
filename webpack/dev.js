@@ -30,9 +30,7 @@ module.exports = {
 			loader: 'babel-loader'
 		},{
 			test: /\.(scss|css)$/,
-			use: [/*{
-					loader: 'vue-style-loader'
-				}*/
+			use: [
 				//extract css into separate file
 				MiniCssExtractPlugin.loader,
 				{
@@ -50,7 +48,8 @@ module.exports = {
 					options:{
 						sourceMap: true
 					}
-			}]
+				}
+			]
 		},{
 			test: /\.(png|jpg|gif|svg)$/i,
 			use: [
