@@ -99,3 +99,6 @@ To validate things work properly run
    # check browser list for post-css autoprefixer
    npx browserslist
 ```
+
+### ESLint
+

@@ -11,11 +11,12 @@ import appStore from './store';
 //LOCAL - STYLES
 import './styles/index.scss';
 //start page
-import Home from './page/Home';
+//import Home from './page/Home';
+import Page from './layout/Page';
 
 ReactDOM.render(
   <Provider store={appStore}>
-    <Home/>
+    <Page/>
   </Provider>,
   document.getElementById('react-root')
 )

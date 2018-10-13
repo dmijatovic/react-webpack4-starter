@@ -1,12 +1,10 @@
 //REACT
 import React from 'react';
-
-//THIRD PARTY
+//REDUX
 import { connect } from 'react-redux';
 
 //LOCAL components
-import { Page } from '../layout';
-import { Loader, Persons, Clock } from '../component';
+import { Loader, Persons } from '../component';
 import { logGroup } from '../utils';
 import * as actionType from '../store/actions';
 
@@ -15,6 +13,12 @@ import * as actionType from '../store/actions';
  */
 import './Home.scss';
 export class Home extends React.Component{
+  showLoader = () =>{
+    if (this.props.loader.show===false){
+      //hide loader
+      this.props.onShowLoader();
+    }
+  }
   getContent=()=>{
      //debugger
      if (this.props.loader.show){
@@ -37,14 +41,12 @@ export class Home extends React.Component{
       props: this.props
     })
     return(
-      <Page
-        title="This is homepage title in the header">
+      <React.Fragment>
         <div className="page-body-header">
-          <h2>Home page title</h2>
-          <Clock/>
+          <h2>{this.props.pageTitle}</h2>
         </div>
         { this.getContent() }
-      </Page>
+      </React.Fragment>
     );
   }
   componentDidMount(){
@@ -54,6 +56,10 @@ export class Home extends React.Component{
       state: this.state,
       props: this.props
     })
+    //set page title
+    this.props.setPageTitle("Home page");
+    //first show loader
+    this.showLoader()
     //change loader state after 2 seconds
     setTimeout(()=>{
       //dispatch action to redux store
@@ -79,8 +85,6 @@ export class Home extends React.Component{
 const mapStateToProps = state => {
   //debugger
   return {
-    logo: state.header.logo,
-    appTitle: state.header.appTitle,
     pageTitle: state.header.pageTitle,
     loader: state.loader
   }

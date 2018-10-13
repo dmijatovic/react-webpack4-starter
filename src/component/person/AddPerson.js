@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './AddPerson.scss';
+
 /**
  * This component uses local state to manage values during editing
  * when Add button is clicked the values are passed to parent using
@@ -39,7 +41,7 @@ class AddPerson extends React.Component{
             onChange={this.setAge}
             value={this.state.age}/>
         </p>
-        <button className="btn btn-primary btn-md"
+        <button className="btn btn-primary btn-sm"
           onClick={this.addPerson}>Add
         </button>
       </div>

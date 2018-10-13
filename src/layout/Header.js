@@ -11,8 +11,10 @@ export class Header extends Component {
     return (
       <header className="app-header">
         <section className="app-header-body">
-          <div className="app-logo"></div>
-          <h1 className="app-title">{this.props.appTitle}</h1>
+          <div className="dflex ai-center">
+            <div className="app-logo"></div>
+            <h1 className="app-title">{this.props.appTitle}</h1>
+          </div>
           <h2 className="app-page-title">{this.props.pageTitle}</h2>
         </section>
       </header>

@@ -11,12 +11,14 @@ export class Footer extends Component {
   render() {
     return (
       <footer className="app-footer">
-        <div className="footer-left">
-          {this.props.left}
-        </div>
-        <div className="footer-right">
-          {this.props.right}
-        </div>
+        <section className="app-footer-body">
+          <div className="footer-left">
+            {this.props.left}
+          </div>
+          <div className="footer-right">
+            {this.props.right}
+          </div>
+        </section>
       </footer>
     );
   }

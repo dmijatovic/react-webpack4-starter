@@ -5,7 +5,8 @@
 
 .persons{
   padding: 1rem;
-  display: flex;
+  display: block;
+
 
   &-add{
     display: flex;
@@ -24,5 +25,7 @@
   &-list{
     display: flex;
     flex-wrap: wrap;
+    padding: 1rem 0rem;
+    border-top: var(--border-1);
   }
 }

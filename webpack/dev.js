@@ -100,7 +100,9 @@ module.exports = {
 	devServer:{
 		port: 3000,
 		stats: stats,
-		compress: true
+		compress: true,
+		//route rewrites
+		historyApiFallback: true,
 	},
 	/*
  * SplitChunksPlugin is enabled by default and replaced
