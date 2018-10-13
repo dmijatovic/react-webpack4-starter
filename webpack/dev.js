@@ -1,17 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 
-//const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-/*
- * We've enabled UglifyJSPlugin for you! This minifies your app
- * in order to load faster and run less javascript.
- * https://github.com/webpack-contrib/uglifyjs-webpack-plugin
-*/
-//const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 //load stats configuration
@@ -23,7 +15,7 @@ const dist = path.resolve(__dirname, '../dist');
 
 module.exports = {
 	mode: 'development',
-	entry:{		
+	entry:{
 		index: './src/index.js'
 	},
 	output: {
@@ -59,6 +51,17 @@ module.exports = {
 						sourceMap: true
 					}
 			}]
+		},{
+			test: /\.(png|jpg|gif|svg)$/i,
+			use: [
+				{
+					loader: 'url-loader',
+					options: {
+						limit: 2048,
+						name:"img/[name].[ext]"
+					}
+				}
+			]
 		}]
 	},
 
@@ -71,7 +74,7 @@ module.exports = {
       inject: true
 		}),
 		//old extract text plugin to extract css
-		//new ExtractTextPlugin('[name].css')		
+		//new ExtractTextPlugin('[name].css')
 		new MiniCssExtractPlugin({
       // Options similar to webpackOptions.output
       // both options are optional
@@ -80,13 +83,26 @@ module.exports = {
 		}),
 		//copy assets
 		//https://webpack.js.org/plugins/copy-webpack-plugin/
-		new CopyWebpackPlugin([						
-			//copy all files from assets dir to root
+		new CopyWebpackPlugin([
+			//copy all files from static dir to root
 			//note: when no files folder is not copied!
-			'./assets/'
+			'./static/'
 		])
 	],
-/*
+	/**
+	 * Display stats, see link below for complete list
+	 * https://webpack.js.org/configuration/stats/#stats
+	 */
+	stats: stats,
+	/**
+	 * Webpack dev server setup
+	 */
+	devtool: 'source-map',
+	devServer:{
+		port: 3000,
+		stats: stats,
+	},
+	/*
  * SplitChunksPlugin is enabled by default and replaced
  * deprecated CommonsChunkPlugin. It automatically identifies modules which
  * should be splitted of chunk by heuristics using module duplication count and
@@ -97,7 +113,6 @@ module.exports = {
  *
  * https://webpack.js.org/plugins/split-chunks-plugin/
  *
- */
 	optimization: {
 		splitChunks: {
 			chunks: 'async',
@@ -111,18 +126,5 @@ module.exports = {
 				}
 			}
 		}
-	},	
-	/**
-	 * Display stats, see link below for complete list
-	 * https://webpack.js.org/configuration/stats/#stats
-	 */
-	stats: stats,
-	/**
-	 * Webpack dev server setup
-	 */
-	devtool: 'source-map',
-	devServer:{				
-		port: 4040,
-		stats: stats,
-	},
+	},*/
 };
