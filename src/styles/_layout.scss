@@ -2,7 +2,7 @@
 @import 'variables';
 
 //------------------------------
-// BASIC RESET 
+// BASIC RESET
 *,
 *::before,
 *::after{
@@ -18,12 +18,12 @@ html{
   we want to enable user to set the fontsize but we also need
   easy way to calculate out rem units. To achieve both the following
   approach is advised. Default font size is 16px. So setting font size
-  to 100% we now that our starting size for 1rem = 16px. It would be easer 
+  to 100% we now that our starting size for 1rem = 16px. It would be easer
   for us if we can set start to 10px so we can easily use decimals in rem,
-  for example 10px = 1rem => 1.65rem = 16.5px. To achive easy math we 
-  can set font size to 10/16 = 62.5%. Note! when changing font size 
-  the complete layout will change because all dimensions are set 
-  in rem units. 
+  for example 10px = 1rem => 1.65rem = 16.5px. To achive easy math we
+  can set font size to 10/16 = 62.5%. Note! when changing font size
+  the complete layout will change because all dimensions are set
+  in rem units.
   */
   //estimated 16px=1rem;
   font-size: 100%;
@@ -34,10 +34,10 @@ body{
   min-height: 100vh;
   font-family: $font-family;
   color: var(--color-dark-1);
-  background-image: linear-gradient(to bottom right, 
+  background-image: linear-gradient(to bottom right,
     var(--color-primary-light), var(--color-primary-dark)
-  );  
-  box-sizing: border-box;  
+  );
+  box-sizing: border-box;
 }
 
 
@@ -45,5 +45,45 @@ body{
   flex:1;
   display: flex;
   flex-direction: column;
-  //width: 100%;
 }
+
+/*--------------------------------------------
+  MEDIA QUERIES for page scaling
+----------------------------------------------*/
+
+/*--width-lg 82.5% => 1rem = 14px */
+@media screen and (max-width:1600px){
+  html{
+    font-size: 87.5%;
+  }
+}
+
+
+/*--width-md 75% => 1rem = 12px */
+@media screen and (max-width:1280px){
+  html{
+    font-size: 75%;
+  }
+}
+
+/*--width-sm 62.5% => 1rem = 10px */
+@media screen and (max-width:768px){
+  html{
+    font-size: 62.5%;
+  }
+}
+
+/*--width-xs 50% => 1rem = 8px */
+@media screen and (max-width:480px){
+  html{
+    font-size: 50%;
+  }
+}
+
+/*--width-xxs */
+@media screen and (max-width:320px){
+  html{
+    font-size: 42%;
+  }
+}
+

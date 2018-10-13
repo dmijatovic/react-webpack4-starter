@@ -1,3 +1,7 @@
+/*
+  src: Loader.css  
+  v0.0.1 Sep 2018  
+*/
 
 .lds-hourglass {
   display: inline-block;
@@ -13,8 +17,8 @@
   height: 0;
   margin: 6px;
   box-sizing: border-box;
-  border: 26px solid var(--color-light-0);
-  border-color: var(--color-light-0) transparent var(--color-light-0) transparent;
+  border: 26px solid var(--color-primary);
+  border-color: var(--color-primary) transparent var(--color-primary) transparent;
   animation: lds-hourglass 1.2s infinite;
 }
 @keyframes lds-hourglass {
@@ -50,7 +54,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-primary);
   margin: -3px 0 0 -3px;
 }
 

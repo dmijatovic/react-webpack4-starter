@@ -2,29 +2,33 @@ import React from 'react';
 
 import './Loader.css';
 
+/**
+ * Loader component
+ * @param { String } type: expected string values are 'hourglass' or 'roller'
+ */
 export class Loader extends React.Component{
   /**
    * Create loader component
-   * @param props.type: string, expected values first, second  
+   * @param { Object } props.type: string, expected values first, second
    */
   constructor(props){
     super(props)
     //set loader type to default
     this.state = {
-      type: this.props.type || 'default'
+      type: this.props.type || 'hourglass'
     }
   }
   /**
    * Decide which html content to load based on loader type
    */
   loaderHtml(){
+    //debugger
     switch (this.state.type.toLowerCase()){
-
-      case 'first':
+      case 'hourglass':
         return (
           <div className="lds-hourglass"></div>
         )
-      case 'second':
+      case 'roller':
         return (
           <div className="lds-roller">
             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -32,17 +36,19 @@ export class Loader extends React.Component{
         )
       default:
         return (
-          <h1>Here is default loader content</h1>
+          <h1>Loader type not loaded correctly</h1>
         )
     }
   }
   render(){
     return (
-      <div className="loader">
+      <div className="app-loader">
       { //add loader content here
         this.loaderHtml()
       }
       </div>
-    )    
+    )
   }
 }
+
+export default Loader;

@@ -1,10 +1,10 @@
 # React webpack 4 (simple) starter template
 
-This is simple webpack 4 starter with scss enabled. At the moment of creating this starter create-react-app cli uses webpack v3. I created starter tailored toward my needs.
-
-I will probably use create-react-app cli when it starts using webpack v4. For now this is simple starter just to learn webpack 4 and integration of react.js in it.
+This is simple webpack 4 starter with scss enabled and babel version 7. Note that this simple started get more complex on each version increase :-).
 
 I started completely from scratch taking all latest versions avaliable at the time (2018-07-07).
+
+On 2018-10-13 version 2 is created which upgrades to Babel version 7 and furher extends the possibilities of this starter template.
 
 ## NPM installation scripts
 
@@ -24,7 +24,7 @@ Just run `npm install` and all libs mentioned here below should be installed.
   # 4b. install post-css loaders
   npm i -D optimize-css-assets-webpack-plugin postcss-loader postcss postcss-preset-env autoprefixer cssnano
   # 5. install other webpack util plugins
-  npm i -D html-webpack-plugin url-loader copy-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin
+  npm i -D html-webpack-plugin url-loader file-loader copy-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin
 
 ```
 
@@ -70,3 +70,24 @@ Master will have same content as base setup.
 - router: setup extended with react-router
 - redux: setup extended with redux
 - material: setup extended with react-material lib
+
+## Setup gotcha's :-)
+
+### Webpack plugins
+
+Some plugins depend on the other webpack or third party plugins. In some cases it is not sufficient to use only webpack plugin! Examples
+
+- url-loader depends on file-loader at the moment you set the limit on file size that can be added as base64 into js file.
+- postcss-loader depends on third party poscss module which in turns is collection of hondrets of modules that need to be 'pulled' separately. For example if you want to apply autoprefixing through webpack you need: postcss, postcss-loader and autoprefixer.
+
+### Browser support
+
+To provide support for various browsers javasript as well as CSS need to be transpiled to legacy code. To share the information about the required browser support among different modules and plugins the [browserlist](https://browserl.ist/?q=last+2+version%2C%3E+1%25%2Cnot+IE+10) is invented. So far I only got this working as prop in package.json although there are number of different ways to expose the configuration to different plugins/modules/bundlers/transpilers etc.
+
+```json
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "not IE 10"
+  ]
+```

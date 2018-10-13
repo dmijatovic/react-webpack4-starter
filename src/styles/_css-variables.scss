@@ -1,5 +1,5 @@
 /*
-  CSS VARIABLES 
+  CSS VARIABLES
   these in included in CSS and can be used by js 'on-the-fly'
   SCSS variables are only used during compilation of CSS code
   This project test use of CSS variables
@@ -23,4 +23,6 @@
   --box-shadow-2: 0 2rem 5rem rgba(0,0,0,.07);
 
   --border: 1px solid var(--color-light-2);
+
+  --body-content-width: 97vw;
 }
