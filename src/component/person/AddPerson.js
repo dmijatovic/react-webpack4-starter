@@ -20,7 +20,7 @@ class AddPerson extends React.Component{
     this.setState({age: event.target.value});
   }
   addPerson = () =>{
-    console.log("Add person...", this.state);
+    //console.log("Add person...", this.state);
     this.props.addPerson(this.state);
   }
   render(){
