@@ -23,6 +23,8 @@ Just run `npm install` and all libs mentioned below will be installed.
   npm i -D optimize-css-assets-webpack-plugin postcss-loader postcss postcss-preset-env autoprefixer cssnano
   # 5. install other webpack util plugins
   npm i -D html-webpack-plugin url-loader file-loader copy-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin
+  # 6. ESLint
+  npm i -D eslint babel-eslint eslint-plugin-react
 
 ```
 
@@ -49,13 +51,13 @@ BTW: I have chosen here simpler approach with some code duplication above more c
 - **`assets`**: all asset files used like original logo and other images etc. Excel template for creating json files is also here.
 - **`dist`**: builds are here
 - **`src`**: holds all react code to be processed by webpack. **All js/css files need to be inside `src` folder**, otherwise Webpack won’t see them.
-    - **component**: holds shared/general react components used by multiple pages
-    - **layout**: holds react components which define global page layout
-    - **page**: holds react components that represent pages (uniek in design/composition)
-    - **router**: holds defined routes, react router setup and main router component. This router component is then integrated into main/global layout component.
-    - **store**: holds all redux files used to setup redux store including implementation of custom middleware functions.
-    - **styles**: holds css (js possible too) files related to defining global styles, overrides, css variables etc.
-    - **utils**: holds uitility function
+  - **component**: holds shared/general react components used by multiple pages
+  - **layout**: holds react components which define global page layout
+  - **page**: holds react components that represent pages (uniek in design/composition)
+  - **router**: holds defined routes, react router setup and main router component. This router component is then integrated into main/global layout component.
+  - **store**: holds all redux files used to setup redux store including implementation of custom middleware functions.
+  - **styles**: holds css (js possible too) files related to defining global styles, overrides, css variables etc.
+  - **utils**: holds uitility function
 - **static**: static files that will be included in the build
 - **webpack**: webpack configuration file from react-scipts
 
@@ -81,6 +83,16 @@ Some plugins depend on the other webpack or third party plugins. In some cases i
 - postcss-loader depends on third party poscss module which in turns is collection of hondrets of modules that need to be 'pulled' separately. For example if you want to apply autoprefixing through webpack you need: postcss, postcss-loader and autoprefixer.
 - babel polyfill need to be project dependency as it is shipped with the project.
 
+### Webpack dev server and history router
+
+Ensure dev server has url rewrites defined. On 'normal' server this setting is required. Also with webpack dev server the flag need to be set to true!
+
+```json
+  devServer: {
+    historyApiFallback: true,
+  },
+```
+
 ### Browser support
 
 To provide support for various browsers javasript as well as CSS need to be transpiled to legacy code. To share the information about the required browser support among different modules and plugins the [browserlist](https://browserl.ist/?q=last+2+version%2C%3E+1%25%2Cnot+IE+10) is invented. So far I only got this working as prop in package.json although there are number of different ways to expose the configuration to different plugins/modules/bundlers/transpilers etc.
@@ -100,5 +112,31 @@ To validate things work properly run
    npx browserslist
 ```
 
-### ESLint
+### [ESLint](https://eslint.org/docs/user-guide/configuring)
 
+ESLint requires configuration file. The preference is to have .eslintrc file defined per project in order to tweak the rules.
+Basic setup is perfomed based on this [video](https://www.youtube.com/watch?v=nxxl2H_TOTc&list=PLMWjeRChIK6bnp6qaS3rxLGCpc9aQYzEE)
+
+```js
+  {
+    //extends basic eslint recommendations
+    "extends": "eslint:recommended",
+    //parser ECMA version 7
+    "parserOptions": {
+      "ecmaVersion": 7,
+      //using classes
+      "sourceType": "module",
+      //enable react features
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    //environments
+    "env": {
+      "node":true,
+      "browser": true,
+      "jest": true
+    }
+  }
+
+```
