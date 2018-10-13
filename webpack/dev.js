@@ -100,6 +100,7 @@ module.exports = {
 	devServer:{
 		port: 3000,
 		stats: stats,
+		compress: true
 	},
 	/*
  * SplitChunksPlugin is enabled by default and replaced

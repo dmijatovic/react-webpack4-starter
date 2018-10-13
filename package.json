@@ -9,7 +9,12 @@
     "build:dev": "webpack --env=dev",
     "build": "webpack --env=prod"
   },
-  "keywords": ["react","webpack 4", "babel 7", "scss"],
+  "keywords": [
+    "react",
+    "webpack 4",
+    "babel 7",
+    "scss"
+  ],
   "author": "Dusan Mijatovic, dv4all",
   "license": "MIT",
   "devDependencies": {
@@ -41,15 +46,16 @@
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
-  "browserslist": [
+  "browserslist-2": [
     "last 2 version",
     "> 1%",
     "not IE 10"
   ],
-  "browserslist-v2": [
+  "browserslist": [
     "> 0.25%"
   ]
 }

@@ -10,7 +10,7 @@ Just run `npm install` and all libs mentioned here below should be installed.
 
 ```bash
   # 1. install react dom
-  npm i -s react react-dom
+  npm i -s react react-dom @babel/polyfill
   # 2. install webpack modules
   npm i -D webpack webpack-cli webpack-dev-server webpack-bundle-analyzer
   # 3a. install babel loaders - basics v7
@@ -77,6 +77,7 @@ Some plugins depend on the other webpack or third party plugins. In some cases i
 
 - url-loader depends on file-loader at the moment you set the limit on file size that can be added as base64 into js file.
 - postcss-loader depends on third party poscss module which in turns is collection of hondrets of modules that need to be 'pulled' separately. For example if you want to apply autoprefixing through webpack you need: postcss, postcss-loader and autoprefixer.
+- babel polyfill need to be project dependency as it is shipped with the project.
 
 ### Browser support
 
