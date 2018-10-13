@@ -87,7 +87,7 @@ Some plugins depend on the other webpack or third party plugins. In some cases i
 
 Ensure dev server has url rewrites defined. On 'normal' server this setting is required. Also with webpack dev server the flag need to be set to true!
 
-```json
+```javascript
   devServer: {
     historyApiFallback: true,
   },
@@ -117,10 +117,19 @@ To validate things work properly run
 ESLint requires configuration file. The preference is to have .eslintrc file defined per project in order to tweak the rules.
 Basic setup is perfomed based on this [video](https://www.youtube.com/watch?v=nxxl2H_TOTc&list=PLMWjeRChIK6bnp6qaS3rxLGCpc9aQYzEE)
 
+Beside eslint we need to use react plugin eslint-plugin-react.
+
+```bash
+  # ESlint setup for react
+  npm i -D eslint babel-eslint eslint-plugin-react
+```
+
 ```js
   {
-    //extends basic eslint recommendations
-    "extends": "eslint:recommended",
+    //extends basic eslint recommendations and react
+    "extends": ["eslint:recommended","plugin:react/recommended"],
+    //use babel plugin
+    "parser": "babel-eslint",
     //parser ECMA version 7
     "parserOptions": {
       "ecmaVersion": 7,
@@ -136,6 +145,19 @@ Basic setup is perfomed based on this [video](https://www.youtube.com/watch?v=nx
       "node":true,
       "browser": true,
       "jest": true
+    },
+    //customizing default rules
+    "rules": {
+      //warn on used variables but not arguments
+      "no-unused-vars": ["warn",{
+        "args":"none"
+      }],
+      //warn on console.logs
+      "no-console": 1,
+      //no idea what rule is this
+      "no-unexpected-multiline": "warn",
+      //warn on improper propTypes when these are declared
+      "react/prop-types": [1,{"skipUndeclared":true}]
     }
   }
 
