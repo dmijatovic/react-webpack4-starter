@@ -82,6 +82,20 @@ Some plugins depend on the other webpack or third party plugins. In some cases i
 - url-loader depends on file-loader at the moment you set the limit on file size that can be added as base64 into js file.
 - postcss-loader depends on third party poscss module which in turns is collection of hondrets of modules that need to be 'pulled' separately. For example if you want to apply autoprefixing through webpack you need: postcss, postcss-loader and autoprefixer.
 - babel polyfill need to be project dependency as it is shipped with the project.
+- for IE 11 support you need additional polyfills to support fetch "whatwg-fetch" and include it in index.js as first import
+- for IE 11 you need also need to include @babel/polyfill
+- for IE 11 to have autoperfixer add values for all CSS variables you need to import index.scss file into index not index.js that imports other scss files; this seem not to work?
+
+```javascript
+  //at the top of index.js file, before react add
+  //import fetch polyfill
+  import 'whatwg-fetch';
+  //polyfills
+  import '@babel/polyfill';
+  //import APP styles firs (if extracted to separate file)
+  import './styles';
+
+```
 
 ### Webpack dev server and history router
 
