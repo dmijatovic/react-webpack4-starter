@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+//const webpack = require('webpack');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -73,8 +73,8 @@ module.exports = {
 		new MiniCssExtractPlugin({
       // Options similar to webpackOptions.output
       // both options are optional
-      filename: "[name].[chunkhash].css",
-     	chunkFilename: "[id].[chunkhash].css"
+			filename: "[name].[chunkhash].css",
+			chunkFilename: "[id].[chunkhash].css"
 		}),
 		//copy assets
 		//https://webpack.js.org/plugins/copy-webpack-plugin/
