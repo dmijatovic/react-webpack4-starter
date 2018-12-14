@@ -135,7 +135,7 @@ Beside eslint we need to use react plugin eslint-plugin-react.
 
 ```bash
   # ESlint setup for react
-  npm i -D eslint babel-eslint eslint-plugin-react
+  npm i -D eslint eslint-loader babel-eslint eslint-plugin-react eslint-plugin-jest
 ```
 
 ```js
