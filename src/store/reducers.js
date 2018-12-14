@@ -1,7 +1,7 @@
 
 import { Config } from './app.cfg';
 import * as actionType from './actions';
-import { logGroup } from '../utils';
+//import { logGroup } from '../utils';
 
 
 const initialState=Config;
@@ -10,7 +10,7 @@ const initialState=Config;
  * @param state: object, current redux store state of loader store
  * @param action: object, dispatched redux action
  */
-export const loaderReducer = (state=initialState.loader,action)=>{  
+export const loaderReducer = (state=initialState.loader,action)=>{
   //just for fun use lowercased action types
   switch (action.type){
     case actionType.SHOW_LOADER:

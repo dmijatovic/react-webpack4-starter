@@ -8,6 +8,7 @@ export class Clock extends React.Component{
     this.initState();
   }
   initState(){
+    //eslint-disable-next-line
     this.state={
       time:{
         hrs: "00",

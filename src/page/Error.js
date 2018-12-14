@@ -7,22 +7,22 @@ class ErrorPage extends React.Component{
     logGroup({
       title:"ErrorPage",
       method:"componentDidMount",
-      props: this.props 
+      props: this.props
     })
   }
-  render(){    
+  render(){
     logGroup({
       title:"ErrorPage",
       method:"render",
-      props: this.props 
-    })    
+      props: this.props
+    })
     let {match} = this.props;
     return (
       <div>
         <h1>{match.params.id} - Error</h1>
       </div>
     );
-  }  
-};
+  }
+}
 
 export default ErrorPage;

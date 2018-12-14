@@ -24,7 +24,7 @@ Just run `npm install` and all libs mentioned below will be installed.
   # 5. install other webpack util plugins
   npm i -D html-webpack-plugin url-loader file-loader copy-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin
   # 6. ESLint
-  npm i -D eslint babel-eslint eslint-plugin-react
+  npm i -D eslint babel-eslint eslint-plugin-react eslint-plugin-jest
 
 ```
 

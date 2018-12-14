@@ -86,7 +86,7 @@ const valToDec = (val, dec=0) => {
     var fVal = 0, factor=1;
     if (dec > 0) {
       factor = Math.pow(10, dec);
-    };
+    }
     fVal = Math.round(val * factor) / factor;
     return fVal;
   } else {

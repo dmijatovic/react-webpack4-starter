@@ -2,7 +2,7 @@ import React from 'react';
 //redux
 import { connect } from 'react-redux';
 //router
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import AppRouter from '../router/AppRouter';
 //local
 import { Header, NavBar, Footer } from './index';
