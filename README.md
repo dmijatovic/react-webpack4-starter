@@ -6,7 +6,7 @@ I started completely from scratch taking all latest versions avaliable at the ti
 
 ## NPM installation scripts
 
-Just run `npm install` and all libs mentioned here below should be installed.
+Just run `npm install` and all libs mentioned below will be installed.
 
 ```bash
   # 1. install react dom
@@ -23,6 +23,8 @@ Just run `npm install` and all libs mentioned here below should be installed.
   npm i -D optimize-css-assets-webpack-plugin postcss-loader postcss postcss-preset-env autoprefixer cssnano
   # 5. install other webpack util plugins
   npm i -D html-webpack-plugin url-loader file-loader copy-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin
+  # 6. ESLint
+  npm i -D eslint eslint-loader babel-eslint eslint-plugin-react eslint-plugin-jest
 
 ```
 
@@ -49,13 +51,13 @@ BTW: I have chosen here simpler approach with some code duplication above more c
 - **`assets`**: all asset files used like original logo and other images etc. Excel template for creating json files is also here.
 - **`dist`**: builds are here
 - **`src`**: holds all react code to be processed by webpack. **All js/css files need to be inside `src` folder**, otherwise Webpack won’t see them.
-    - **component**: holds shared/general react components used by multiple pages
-    - **layout**: holds react components which define global page layout
-    - **page**: holds react components that represent pages (uniek in design/composition)
-    - **router**: holds defined routes, react router setup and main router component. This router component is then integrated into main/global layout component.
-    - **store**: holds all redux files used to setup redux store including implementation of custom middleware functions.
-    - **styles**: holds css (js possible too) files related to defining global styles, overrides, css variables etc.
-    - **utils**: holds uitility function
+  - **component**: holds shared/general react components used by multiple pages
+  - **layout**: holds react components which define global page layout
+  - **page**: holds react components that represent pages (uniek in design/composition)
+  - **router**: holds defined routes, react router setup and main router component. This router component is then integrated into main/global layout component.
+  - **store**: holds all redux files used to setup redux store including implementation of custom middleware functions.
+  - **styles**: holds css (js possible too) files related to defining global styles, overrides, css variables etc.
+  - **utils**: holds uitility function
 - **static**: static files that will be included in the build
 - **webpack**: webpack configuration file from react-scipts
 
@@ -65,9 +67,11 @@ Master will have same content as base setup.
 
 - master: same as base.
 - base: basic rect-dom setup with support for scss, postcss, fonts and images.
+- jest: basic + jest and enzyme test suite setup
 - router: setup extended with react-router
 - redux: setup extended with redux
 - material: setup extended with react-material lib
+- dev: development branch
 
 ## Setup gotcha's :-)
 
@@ -78,6 +82,30 @@ Some plugins depend on the other webpack or third party plugins. In some cases i
 - url-loader depends on file-loader at the moment you set the limit on file size that can be added as base64 into js file.
 - postcss-loader depends on third party poscss module which in turns is collection of hondrets of modules that need to be 'pulled' separately. For example if you want to apply autoprefixing through webpack you need: postcss, postcss-loader and autoprefixer.
 - babel polyfill need to be project dependency as it is shipped with the project.
+- for IE 11 support you need additional polyfills to support fetch "whatwg-fetch" and include it in index.js as first import
+- for IE 11 you need also need to include @babel/polyfill
+- for IE 11 to have autoperfixer add values for all CSS variables you need to import index.scss file into index not index.js that imports other scss files; this seem not to work?
+
+```javascript
+  //at the top of index.js file, before react add
+  //import fetch polyfill
+  import 'whatwg-fetch';
+  //polyfills
+  import '@babel/polyfill';
+  //import APP styles firs (if extracted to separate file)
+  import './styles';
+
+```
+
+### Webpack dev server and history router
+
+Ensure dev server has url rewrites defined. On 'normal' server this setting is required. Also with webpack dev server the flag need to be set to true!
+
+```javascript
+  devServer: {
+    historyApiFallback: true,
+  },
+```
 
 ### Browser support
 
@@ -96,4 +124,55 @@ To validate things work properly run
 ```bash
    # check browser list for post-css autoprefixer
    npx browserslist
+```
+
+### [ESLint](https://eslint.org/docs/user-guide/configuring)
+
+ESLint requires configuration file. The preference is to have .eslintrc file defined per project in order to tweak the rules.
+Basic setup is perfomed based on this [video](https://www.youtube.com/watch?v=nxxl2H_TOTc&list=PLMWjeRChIK6bnp6qaS3rxLGCpc9aQYzEE)
+
+Beside eslint we need to use react plugin eslint-plugin-react.
+
+```bash
+  # ESlint setup for react
+  npm i -D eslint babel-eslint eslint-plugin-react
+```
+
+```js
+  {
+    //extends basic eslint recommendations and react
+    "extends": ["eslint:recommended","plugin:react/recommended"],
+    //use babel plugin
+    "parser": "babel-eslint",
+    //parser ECMA version 7
+    "parserOptions": {
+      "ecmaVersion": 7,
+      //using classes
+      "sourceType": "module",
+      //enable react features
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    //environments
+    "env": {
+      "node":true,
+      "browser": true,
+      "jest": true
+    },
+    //customizing default rules
+    "rules": {
+      //warn on used variables but not arguments
+      "no-unused-vars": ["warn",{
+        "args":"none"
+      }],
+      //warn on console.logs
+      "no-console": 1,
+      //no idea what rule is this
+      "no-unexpected-multiline": "warn",
+      //warn on improper propTypes when these are declared
+      "react/prop-types": [1,{"skipUndeclared":true}]
+    }
+  }
+
 ```

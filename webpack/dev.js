@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+//const webpack = require('webpack');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -27,7 +27,11 @@ module.exports = {
 		rules: [{
 			test: /\.js$/,
 			exclude: /node_modules/,
-			loader: 'babel-loader'
+			use:[{
+				loader: 'babel-loader'
+			},{
+				loader: 'eslint-loader'
+			}]
 		},{
 			test: /\.(scss|css)$/,
 			use: [
@@ -77,8 +81,8 @@ module.exports = {
 		new MiniCssExtractPlugin({
       // Options similar to webpackOptions.output
       // both options are optional
-      filename: "[name].css",
-     	chunkFilename: "[id].css"
+			filename: "[name].css",
+			chunkFilename: "[id].css"
 		}),
 		//copy assets
 		//https://webpack.js.org/plugins/copy-webpack-plugin/
@@ -100,7 +104,9 @@ module.exports = {
 	devServer:{
 		port: 3000,
 		stats: stats,
-		compress: true
+		compress: true,
+		//route rewrites
+		historyApiFallback: true,
 	},
 	/*
  * SplitChunksPlugin is enabled by default and replaced
