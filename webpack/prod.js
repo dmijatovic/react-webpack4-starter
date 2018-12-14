@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+//const webpack = require('webpack');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -62,7 +62,7 @@ module.exports = {
 
 	plugins: [
 		//remove all files from dist folder on each build
-		new CleanWebpackPlugin(['./dist/*.*']),
+		new CleanWebpackPlugin([dist]),
 		//copy index html
 		//https://webpack.js.org/plugins/html-webpack-plugin/
 		new HtmlWebpackPlugin({
@@ -73,14 +73,14 @@ module.exports = {
 		new MiniCssExtractPlugin({
       // Options similar to webpackOptions.output
       // both options are optional
-      filename: "[name].[chunkhash].css",
-     	chunkFilename: "[id].[chunkhash].css"
+			filename: "[name].[chunkhash].css",
+			chunkFilename: "[id].[chunkhash].css"
 		}),
 		//copy assets
 		//https://webpack.js.org/plugins/copy-webpack-plugin/
 		new CopyWebpackPlugin([
 			//copy all files from assets dir to root
-			'./assets/'
+			'./static/'
 		]),
 		//uglify js
 		new UglifyJSPlugin(),
@@ -90,7 +90,10 @@ module.exports = {
 			https://www.npmjs.com/package/webpack-bundle-analyzer
 		*/
 		new BundleAnalyzerPlugin({
-			generateStatsFile: true
+			analyzerMode:'static',
+			openAnalyzer: false,
+			reportFilename:'bundle_report.html',
+			//generateStatsFile: true
 		})
 	]
 };
